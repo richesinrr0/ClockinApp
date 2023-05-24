@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,600;1,500;1,700&family=Kanit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!--<script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script> -->
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+
+<style media="all">
+.full {
+    position:absolute;
+    top:17%;
+    left:12.5%;
+    background-color:rgb(255, 255, 255);
+    height: 75%;
+    width: 75%;
+   
+}
+body {
+    background-color:rgb(252, 251, 250);
+    height: 100%;
+    width:100%;
+    top:0;
+}
+
+.headbar {
+    position:fixed; /*fixed*/
+    top: 0;
+    left:0;
+    height: 9%;
+    width: 100%;
+    background-color: #f8fcbd;
+}
+.top-banner-text {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    box-sizing: border-box;
+    right:0;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+    font-size:1.3em;
+    /*background-color: rgba(91, 98, 219, 0.111);*/
+}
+.top-banner-img {
+    position: absolute;
+    /*background-color: rgb(212, 194, 205);*/
+    padding: 0px;
+    box-sizing: border-box;
+    height: 100%;
+    top:5%;
+    text-align: center;
+    left:2%;
+}
+.header-login {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100%;
+}
+
+p {
+    font-family: 'Kanit', sans-serif;
+}
+
+.title {
+    margin: 0;
+    padding:0;
+    font-family: 'Kanit', sans-serif;
+    font-size:1.55em;
+    background-color:#f0f8ff;
+    text-align: center;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+}
+
+.submit-btn {
+
+    background: rgb(255,255,255);
+    color: #73787d;
+
+    /*centering button*/
+    display: block;
+    margin: 0 auto;
+    padding: 1px 9px 1px 9px;
+    transform:translateY(11px);
+
+    cursor: pointer;
+    align-items:center;
+    justify-content:center;
+    font-size: 14px;
+    font-family: 'Kanit', sans-serif;
+}
+.seeall-btn {
+
+    background: rgb(255,255,255);
+    color: #73787d;
+
+    /*centering button*/
+    display: block;
+    margin: 0 auto;
+    padding: 1px 9px 1px 9px;
+    transform:translateY(15px);
+
+    cursor: pointer;
+    align-items:center;
+    justify-content:center;
+    font-size: 14px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.see-text {
+    transform:translateY(40%);
+    
+}
+
+input[type=text] {
+    padding: 2.5px;
+    margin: 8px 0;
+    border-radius:5px;
+    /*max-width:150%;*/
+    justify-content:center;
+
+    
+}
+form {
+  display: flex;
+  flex-direction: column;
+
+  align-items:center;
+}
+
+
+</style> 
+</head>
+
+<body>
+    <div class="headbar">
+        <div class="top-banner-text">
+            <!--<p class="header-login">Login</p>-->
+        </div>
+        <div class="top-banner-img">
+            <!--width:140,height:55-->
+            <img src="../static/img/logo.png" 
+            alt="Magnetic Hope logo"
+            width="80%"   
+            height="90%" /> 
+            <!--<img src="{{ url_for('static', filename='../img/logo.png') }}">-->
+        </div>
+    </div>
+    <div class="full">
+        <p class="title">
+            Welcome, {{ name }}
+        </p>
+        <div class="centered">
+            <p>Please enter the first and last name of the employee you would like to access</p>
+            <form method="POST" action="/admin" href="{{ url_for('admin') }}">
+                <label for="first-label">First Name</label>
+                <input id="first" type="text" name="first_name"  size="25"/>
+                <label id="last-label" for="last">Last Name</label>
+                <input id="last" type="text" name="last_name" size="25"/>
+                <input class="submit-btn" type="submit" name="action" value="submit"/>
+        
+                <p class="see-text">Or click here to see all records</p>
+                <input class="seeall-btn" type="submit" name="action" value="see all"/>
+            </form>
+        </div>
+
+    </div>
+</body>

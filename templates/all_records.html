@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--<link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">-->
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='DataTables/datatables.css') }}">
+        
+        <title>Query Table</title>
+
+    </head>
+    <body>
+        <h2>All Results</h2>
+
+        <div>
+            <table id="data" class="display">
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th scope="col">entry_id</th>
+                        <th scope="col">emp_ssn</th>
+                        <th scope="col">emp_first_name</th>
+                        <th scope="col">emp_last_name</th>
+                        <th scope="col">ref_clock</th>
+                        <th scope="col">clock_in</th>
+                        <th scope="col">clock_out</th>
+                        <th scope="col">total_hours</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for idx,result in results: %}
+                    <tr>
+                        <th scope="row">{{ idx }}</th>
+                        <td>{{ result.entry_id }}</td>
+                        <td>{{ result.emp_ssn }}</td>
+                        <td>{{ result.emp_first_name }}</td>
+                        <td>{{ result.emp_last_name }}</td>
+                        <td>{{ result.ref_clock }}</td>
+                        <td>{{ result.clock_in }}</td>
+                        <td>{{ result.clock_out }}</td>
+                        <td>{{ result.total_hours }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+       
+        </div>
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='/DataTables/datatables.js') }}"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#data').DataTable({
+                    searching: true,
+                    ordering: false,
+                    "pageLength": 15
+                });
+            });
+
+        </script>
+        
+        <form action="/getCSV" method="POST">
+            <div class="panel-body">
+                <input type ="submit" name="{{ query }}" id="download" value="download">
+            </div>
+        </form>
+        <!--need to pass ssn into this to be able to pull it out into /get_csv-->
+    </body>
+</html>

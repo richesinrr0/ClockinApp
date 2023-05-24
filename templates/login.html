@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,600;1,500;1,700&family=Kanit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!--<script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script> -->
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+
+<style media="all">
+.full {
+    position:absolute;
+    top:12.5%;
+    left:12.5%;
+    background-color:rgb(255, 255, 255);
+    height: 75%;
+    width: 75%;
+    text-align: center;
+
+   
+}
+body {
+    background-color:rgb(252, 251, 250);
+    height: 100%;
+    width:100%;
+    top:0;
+}
+
+
+.title {
+    margin: 0;
+    padding:0;
+    font-family: 'Kanit', sans-serif;
+    font-size:1.55em;
+    background-color:aliceblue;
+    text-align: center;
+}
+
+
+.btn {
+    background: rgb(255,255,255);
+    color: #73787d;
+
+    /*centering button*/
+    display: block;
+    margin: 0 auto;
+    padding:3px;
+    transform:translateY(16px);
+
+    cursor: pointer;
+    align-items:center;
+    justify-content:center;
+    font-size: 16px;
+    font-family: 'Kanit', sans-serif;
+}
+
+label {
+    display: block;
+    font-size:22px;
+    padding-top:12px;
+    font-family: 'Kanit', sans-serif;
+}
+.text {
+    font-size:18px;
+    
+}
+.incorrect {
+    padding-top:19px;
+    font-size: 15px;
+    color: red;
+}
+
+input[type=text] {
+    border-radius:5px;
+}
+
+
+</style> 
+</head>
+
+<body>
+    <div class="full">
+        <!--(after login) Welcome, Ross!-->
+        <p class="title">
+            Login
+        </p>
+
+
+        <p id="date"></p>
+        <form method="POST" action="/time" href="{{ url_for('data') }}">
+            <label for="one">ssn</label>
+            <input id="one" class="text" size="25" type="text" name="ssn" required pattern="\d{4}"/>
+            <label for="two">Password</label>
+            <input id="two" class="text" size="25" type="text" name="password"/>
+            <input class="btn" type="submit" name="action" value="Submit"/>
+
+        </form>
+        <p class="incorrect">{{ fill }}</p>
+    </div>
+    
+</body>
+
+<script>
+document.querySelector("#one").addEventListener("invalid", function(){
+    this.setCustomValidity("This should be the last 4 digits of your ssn");
+});
+
+
+</script>
